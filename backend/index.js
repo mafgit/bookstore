@@ -27,7 +27,12 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
+
+
+//middlewares
 app.use(require("./routes"));
+
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server: http://localhost:${PORT}`));
