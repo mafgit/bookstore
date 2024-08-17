@@ -19,8 +19,12 @@ const SearchPage = () => {
       )
       .then((data) => {
         setBooks(data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the books!", error);
       });
-  }, [search]);
+      ;
+  }, [search, searchParams]);
 
   return (
     <div className="search-page">

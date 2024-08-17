@@ -39,7 +39,6 @@ const deleteBook = async (req, res, next) => {
 };
 
 // GET BOOK BY ID
-<<<<<<< HEAD
 // const getBook = async (req, res) => {
 //     try {
 //         const searchedBook = await Book.findById(req.params.id)
@@ -81,7 +80,10 @@ const searchBooks = async (req, res) => {
     } catch (err) {
         console.log(err);
     }
-=======
+
+
+  };
+  
 const getBook = async (req, res) => {
   try {
     const searchedBook = await Book.findById(req.params.id);
@@ -90,7 +92,6 @@ const getBook = async (req, res) => {
   } catch (err) {
     console.log(err);
   }
->>>>>>> 325e0166ab4c99845ab36a2b3ec10ba67ceb1220
 };
 
 
@@ -107,17 +108,9 @@ const getBooksBySorting = async (req, res) => {
 
 // exporting
 module.exports = {
-<<<<<<< HEAD
     createBook,
     updateBook,
     deleteBook,
     searchBooks,
     getBooksBySorting
-=======
-  createBook,
-  updateBook,
-  deleteBook,
-  getBook,
-  getBooksBySorting,
->>>>>>> 325e0166ab4c99845ab36a2b3ec10ba67ceb1220
 };
