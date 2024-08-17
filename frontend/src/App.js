@@ -7,9 +7,12 @@ import CartPage from "./pages/CartPage";
 import ProfilePage from "./pages/ProfilePage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
+import axios from "axios";
+import AuthRoute from "./pages/AuthRoute";
+import AdminRoute from "./pages/AdminRoute";
 
 export const AuthContext = createContext();
 
@@ -19,6 +22,23 @@ function App() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/check_auth").then((data) => {
+      if (data.auth === true) {
+        setName(data.user.name);
+        setEmail(data.user.email);
+        setId(data.user.id);
+        setLoggedIn(true);
+
+        axios.get("http://localhost:5000/check_admin").then((data) => {
+          if (data.admin === true) {
+            setIsAdmin(true);
+          }
+        });
+      }
+    });
+  }, []);
 
   return (
     <div className="App">
@@ -39,7 +59,14 @@ function App() {
           <Route path="/admin/users" element={<AdminUsersPage />} /> */}
 
             {/* auth routes */}
-            <Route path="/profile" element={<ProfilePage />} />
+            <Route
+              path="/profile"
+              element={
+                <AuthRoute>
+                  <ProfilePage />
+                </AuthRoute>
+              }
+            />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>

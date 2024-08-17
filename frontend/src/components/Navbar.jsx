@@ -1,6 +1,10 @@
+import { useContext } from "react";
 import { FaCartShopping, FaFire, FaLock, FaUser } from "react-icons/fa6";
+import { AuthContext } from "../App";
 
 const Navbar = () => {
+  const { loggedIn, isAdmin } = useContext(AuthContext);
+
   return (
     <nav className="navbar">
       <div className="left"></div>
@@ -12,12 +16,18 @@ const Navbar = () => {
         <button>
           <FaCartShopping />
         </button>
-        <button>
-          <FaLock />
-        </button>
-        <button>
-          <FaUser />
-        </button>
+        {isAdmin && (
+          <button>
+            <FaLock />
+          </button>
+        )}
+        {loggedIn ? (
+          <button>
+            <FaUser />
+          </button>
+        ) : (
+          <button>Login</button>
+        )}
       </div>
     </nav>
   );

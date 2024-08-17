@@ -43,8 +43,8 @@ const deleteBook = async (req, res, next) => {
 //     try {
 //         const searchedBook = await Book.findById(req.params.id)
 //          console.log(req.body)
-//          res.status(200).json(searchedBook)      
-//      } 
+//          res.status(200).json(searchedBook)
+//      }
 //      catch (err) {
 //         console.log(err);
 //      }
@@ -52,6 +52,7 @@ const deleteBook = async (req, res, next) => {
 
 // SEARCH BOOKS BY TEXT AND TAGS
 const searchBooks = async (req, res) => {
+<<<<<<< HEAD
     try {
         const text = req.query.text; 
         const tags = req.query.tags ? req.query.tags.split(',') : [];
@@ -85,15 +86,34 @@ const searchBooks = async (req, res) => {
   };
   
 const getBook = async (req, res) => {
+=======
+>>>>>>> 65da652623a258c7b8a8208d42549bace3186967
   try {
-    const searchedBook = await Book.findById(req.params.id);
-    console.log(req.body);
-    res.status(200).json(searchedBook);
+    const text = req.query.text;
+    const tags = req.query.tags ? req.query.tags.split(",") : [];
+
+    const query = {};
+    if (text) {
+      query.$or = [
+        { title: { $regex: text, $options: "i" } },
+        { description: { $regex: text, $options: "i" } },
+      ];
+    }
+    if (tags.length > 0) {
+      query.tags = { $in: tags };
+    }
+
+    const books = await Book.find(query);
+
+    if (books.length === 0) {
+      res.status(404).json({ message: "No books found !" });
+    } else {
+      res.json(books);
+    }
   } catch (err) {
     console.log(err);
   }
 };
-
 
 // GET BOOKS BY SORTING
 const getBooksBySorting = async (req, res) => {
@@ -108,9 +128,17 @@ const getBooksBySorting = async (req, res) => {
 
 // exporting
 module.exports = {
+<<<<<<< HEAD
     createBook,
     updateBook,
     deleteBook,
     searchBooks,
     getBooksBySorting
+=======
+  createBook,
+  updateBook,
+  deleteBook,
+  searchBooks,
+  getBooksBySorting,
+>>>>>>> 65da652623a258c7b8a8208d42549bace3186967
 };
