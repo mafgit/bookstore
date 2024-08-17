@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/check_auth")
+      .get("http://localhost:5000/auth/check_auth") //fixed here
       .then((data) => {
         if (data.auth === true) {
           setName(data.user.name);
@@ -34,7 +34,7 @@ function App() {
           setLoggedIn(true);
 
           axios
-            .get("http://localhost:5000/check_admin")
+            .get("http://localhost:5000/auth/check_admin") //fixed here
             .then((data) => {
               if (data.admin === true) {
                 setIsAdmin(true);

@@ -52,37 +52,32 @@ const deleteBook = async (req, res, next) => {
 
 // SEARCH BOOKS BY TEXT AND TAGS
 const searchBooks = async (req, res) => {
-    try {
-        const text = req.query.text; 
-        const tags = req.query.tags ? req.query.tags.split(',') : [];
+  try {
+      const text = req.query.text; 
+      const tags = req.query.tags ? req.query.tags.split(',') : [];
 
-        const query = {};
-        if (text) {
-            query.$or = [
-                { title: { $regex: text, $options: "i" } },
-                { description: { $regex: text, $options: "i" } }
-            ];
-        }
-        if (tags.length > 0) {
-            query.tags = { $in: tags };
-        }
+      const query = {};
+      if (text) {
+          query.$or = [
+              { title: { $regex: text, $options: "i" } },
+              { description: { $regex: text, $options: "i" } }
+          ];
+      }
+      if (tags.length > 0) {
+          query.tags = { $in: tags };
+      }
 
-        const books = await Book.find(query);
+      const books = await Book.find(query);
 
-        if (books.length === 0) 
-            {
-            res.status(404).json({ message: "No books found !" });
-        } 
-        else 
-        {
-            res.json(books);
-        }
-    } catch (err) {
-        console.log(err);
-    }
+      // Return an empty array instead of a 404 error when no books are found
+      res.status(200).json(books);
 
+  } catch (err) {
+      console.log(err);
+      res.status(500).json({ message: "An error occurred while searching for books." });
+  }
+};
 
-  };
   
 // GET BOOKS BY SORTING
 const getBooksBySorting = async (req, res) => {
