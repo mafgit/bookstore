@@ -12,9 +12,14 @@ const CartPage = () => {
       const data2 = JSON.parse(data1);
 
       data2.forEach((id) => {
-        axios.get("http://localhost:5000/get_book/" + id).then((book) => {
-          setBooks([...books, book]);
-        });
+        axios
+          .get("http://localhost:5000/get_book/" + id)
+          .then((book) => {
+            setBooks([...books, book]);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       });
     }
   }, []);

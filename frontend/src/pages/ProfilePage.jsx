@@ -9,9 +9,14 @@ const ProfilePage = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(async () => {
-    axios.get("http://localhost:5000/get_orders/" + id).then((data) => {
-      setOrders(data);
-    });
+    axios
+      .get("http://localhost:5000/get_orders/" + id)
+      .then((data) => {
+        setOrders(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (

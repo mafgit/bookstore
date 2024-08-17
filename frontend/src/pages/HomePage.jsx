@@ -8,13 +8,23 @@ const HomePage = () => {
   const [popularBooks, setPopularBooks] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/get_book?tags=trending").then((data) => {
-      setTrendingBooks(data);
-    });
+    axios
+      .get("http://localhost:5000/get_book?tags=trending")
+      .then((data) => {
+        setTrendingBooks(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    axios.get("http://localhost:5000/get_book?tags=popular").then((data) => {
-      setPopularBooks(data);
-    });
+    axios
+      .get("http://localhost:5000/get_book?tags=popular")
+      .then((data) => {
+        setPopularBooks(data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   return (

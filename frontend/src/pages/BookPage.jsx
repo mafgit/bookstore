@@ -9,13 +9,19 @@ const BookPage = () => {
   const { bid } = useParams();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/get_book/" + bid).then((data) => {
-      setBook(data);
-    });
+    axios
+      .get("http://localhost:5000/get_book/" + bid)
+      .then((data) => {
+        setBook(data);
+      })
+      .catch((err) => console.log(err));
 
-    axios.get("http://localhost:5000/get_similar_books/" + bid).then((data) => {
-      setSimilarBooks(data);
-    });
+    axios
+      .get("http://localhost:5000/get_similar_books/" + bid)
+      .then((data) => {
+        setSimilarBooks(data);
+      })
+      .catch((err) => console.log(err));
   });
 
   return (

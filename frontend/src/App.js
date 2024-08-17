@@ -24,20 +24,26 @@ function App() {
   const [id, setId] = useState("");
 
   useEffect(() => {
-    axios.get("http://localhost:5000/check_auth").then((data) => {
-      if (data.auth === true) {
-        setName(data.user.name);
-        setEmail(data.user.email);
-        setId(data.user.id);
-        setLoggedIn(true);
+    axios
+      .get("http://localhost:5000/check_auth")
+      .then((data) => {
+        if (data.auth === true) {
+          setName(data.user.name);
+          setEmail(data.user.email);
+          setId(data.user.id);
+          setLoggedIn(true);
 
-        axios.get("http://localhost:5000/check_admin").then((data) => {
-          if (data.admin === true) {
-            setIsAdmin(true);
-          }
-        });
-      }
-    });
+          axios
+            .get("http://localhost:5000/check_admin")
+            .then((data) => {
+              if (data.admin === true) {
+                setIsAdmin(true);
+              }
+            })
+            .catch((err) => console.log(err));
+        }
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   return (
