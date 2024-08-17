@@ -16,17 +16,42 @@ const createBook = async (req, res, next) => {
 
 // UPDATE BOOK
 const updateBook = async (req, res, next) => {
-   
+    try {
+        const updatedBook= await Book.findByIdAndUpdate(
+            req.params.id,
+             {$set: req.body},
+            {new: true}
+        )
+        console.log(req.body)
+        res.status(200).json(updatedBook)      
+    } 
+    catch (err) {
+        console.log(err);
+    }
 };
 
 // DELETE BOOK
 const deleteBook = async (req, res, next) => {
-    
+    try {
+        await Book.findByIdAndDelete(req.params.id)
+         console.log(req.body)
+         res.status(200).json("Book Deleted")      
+     } 
+     catch (err) {
+        console.log(err);
+     }
 };
 
 // GET BOOK
 const getBook = async (req, res, next) => {
-   
+    try {
+        const searchedBook = await Book.findById(req.params.id)
+         console.log(req.body)
+         res.status(200).json(searchedBook)      
+     } 
+     catch (err) {
+        console.log(err);
+     }
 };
 
 // exporting

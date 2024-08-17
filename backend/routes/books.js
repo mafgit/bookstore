@@ -17,11 +17,13 @@ router.post("/", createBook);
 
 // UPDATE BOOK
 // router.put("/:id", verifyAdmin, updateBook);
+router.put("/:id", updateBook);
 
 // DELETE BOOK
 // router.delete("/:id", verifyAdmin, deleteBook);
+router.delete("/:id", deleteBook);
 
 // GET BOOK
-// router.get("/find/:id", getBook);
+router.get("/find/:id", getBook);
 
 module.exports = router;
