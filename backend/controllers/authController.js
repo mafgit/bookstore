@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
-const User = require("./models/User");
+const User = require("../models/User");
 
 //SIGNUP USER
-export const signup = async (req, res, next) => {
+ const signup = async (req, res, next) => {
     const { name, email, password } = req.body;
     const user = await User.findOne({ email });
     if (user) {
@@ -24,7 +24,7 @@ export const signup = async (req, res, next) => {
 }
 
 //LOGIN USER
-export const login = async (req, res, next) => {
+ const login = async (req, res, next) => {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (user) {
@@ -56,15 +56,13 @@ export const login = async (req, res, next) => {
     }
 }
 
-
-export const logout =  async (req, res, next) => {
+ const logout =  async (req, res, next) => {
     req.session.destroy(() => console.log("User has logged out"));
 //   res.redirect("/login");
 };
 
 
-
-export const check_auth = (req, res, next) => {
+ const check_auth = (req, res, next) => {
     if (req.session.user) {
       next();
     } else {

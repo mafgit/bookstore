@@ -1,8 +1,13 @@
 const express = require("express");
+const cors = require('cors');
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 require("dotenv").config();
+
+const authRoute = require("./routes/auth.js");
+const booksRoute = require("./routes/books.js");
+
 
 const app = express();
 
@@ -20,6 +25,7 @@ app.use(
 );
 
 app.use(express.urlencoded({ extended: false }));
+app.use(cors());
 app.use(express.json());
 
 mongoose
@@ -30,8 +36,8 @@ mongoose
 
 
 //middlewares
-app.use(require("./routes"));
-
+app.use("/api/auth", authRoute)
+app.use("/api/books", booksRoute)
 
 
 const PORT = process.env.PORT || 5000;
