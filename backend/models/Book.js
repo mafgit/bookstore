@@ -17,7 +17,7 @@ const bookSchema = new mongoose.Schema({
     required: true,
     default: "",
   },
-  tags: { type: [String], default: [] },
+  type: { type: [String], default: [] },
 });
 
 module.exports = mongoose.model("Book", bookSchema);

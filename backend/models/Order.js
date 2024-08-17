@@ -11,13 +11,14 @@ const orderSchema = new mongoose.Schema(
       type: [mongoose.Schema.Types.ObjectId],
       required: true,
     },
-    amount: {
-      type: Number,
-      required: true,
+    status: {
+      type: String,
+      enum: ["pending", "delivered", "cancelled"],
+      default: "pending",
     },
-    completed: {
-      type: Boolean,
-      default: false,
+    amount:{
+      type: Number,
+      required: true
     },
   },
   {

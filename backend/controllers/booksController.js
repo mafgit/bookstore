@@ -1,7 +1,7 @@
 const Book = require("../models/Book");
 
 // CREATE BOOK
-const createBook = async (req, res, next) => {
+const createBook = async (req, res) => {
     const newBook = new Book(req.body)
     try {
         const savedBook= await newBook.save()
@@ -15,7 +15,7 @@ const createBook = async (req, res, next) => {
 };
 
 // UPDATE BOOK
-const updateBook = async (req, res, next) => {
+const updateBook = async (req, res) => {
     try {
         const updatedBook= await Book.findByIdAndUpdate(
             req.params.id,
@@ -42,8 +42,8 @@ const deleteBook = async (req, res, next) => {
      }
 };
 
-// GET BOOK
-const getBook = async (req, res, next) => {
+// GET BOOK BY ID
+const getBook = async (req, res) => {
     try {
         const searchedBook = await Book.findById(req.params.id)
          console.log(req.body)
@@ -54,10 +54,22 @@ const getBook = async (req, res, next) => {
      }
 };
 
+// GET BOOKS BY SORTING
+const getBooksBySorting = async (req, res) => {
+    try {
+      const sort = req.query.sort === "asc" ? 1 : -1; 
+      const books = await Book.find().sort({ price: sort });
+      res.json(books);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
 // exporting
 module.exports = {
     createBook,
     updateBook,
     deleteBook,
     getBook,
+    getBooksBySorting
 };
