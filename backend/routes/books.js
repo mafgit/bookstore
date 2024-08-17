@@ -3,7 +3,7 @@ const {
   createBook,
   updateBook,
   deleteBook,
-  getBook,
+  searchBooks,
   getBooksBySorting
 } = require("../controllers/booksController");
 const { check_admin } = require("../controllers/authController");
@@ -19,8 +19,10 @@ router.put("/:id", check_admin, updateBook);
 // DELETE BOOK
 router.delete("/:id", check_admin, deleteBook);
 
-// GET BOOK
-router.get("/find/:id", getBook);
+// GET BOOK BY TAGS AND TEXT
+// router.get("/find/:id", getBook);
+router.get("/search", searchBooks);
+
 
 
 // GET BOOKS WITH SORTING
