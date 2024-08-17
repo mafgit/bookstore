@@ -4,6 +4,7 @@ const {
   login,
   logout,
   check_auth,
+  check_admin,
 } = require("../controllers/authController.js");
 
 const router = express.Router();
