@@ -1,25 +1,42 @@
+import { useEffect, useState } from "react";
 import Book from "../components/Book";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const BookPage = ({ cover, tags, title, description, similar_books }) => {
+const BookPage = () => {
+  const [book, setBook] = useState({});
+  const [similarBooks, setSimilarBooks] = useState({});
+  const { bid } = useParams();
+
+  useEffect(() => {
+    axios.get("http://localhost:5000/get_book/" + bid).then((data) => {
+      setBook(data);
+    });
+
+    axios.get("http://localhost:5000/get_similar_books/" + bid).then((data) => {
+      setSimilarBooks(data);
+    });
+  });
+
   return (
     <div className="book-page">
       <div className="main">
         <div className="left">
-          <img src={cover} alt="cover" />
+          <img src={book.cover} alt="cover" />
         </div>
         <div className="right">
-          <h3>{title}</h3>
+          <h3>{book.title}</h3>
           <div className="tags">
-            {tags.map((tag) => (
+            {book.tags.map((tag) => (
               <div className="tag">{tag}</div>
             ))}
           </div>
-          <p>{description}</p>
+          <p>{book.description}</p>
         </div>
       </div>
 
       <div className="similar-books">
-        {similar_books.map((book) => (
+        {similarBooks.map((book) => (
           <Book />
         ))}
       </div>

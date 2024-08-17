@@ -7,28 +7,45 @@ import CartPage from "./pages/CartPage";
 import ProfilePage from "./pages/ProfilePage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { createContext, useState } from "react";
+import SignupPage from "./pages/SignupPage";
+import LoginPage from "./pages/LoginPage";
+
+export const AuthContext = createContext();
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [id, setId] = useState("");
+
   return (
     <div className="App">
-      <Navbar />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/book/:bid" element={<BookPage />} />
-          <Route path="/search/:query" element={<SearchPage />} />
-          <Route path="/cart" element={<CartPage />} />
+      <AuthContext.Provider
+        value={{ loggedIn, isAdmin, name, email, id, setLoggedIn, setIsAdmin }}
+      >
+        <Navbar />
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/book/:bid" element={<BookPage />} />
+            <Route path="/search/:query" element={<SearchPage />} />
+            <Route path="/cart" element={<CartPage />} />
 
-          {/* auth routes */}
-          <Route path="/profile" element={<ProfilePage />} />
-
-          {/* admin routes */}
-          {/* <Route path="/admin/orders" element={<AdminOrdersPage />} />
+            {/* admin routes */}
+            {/* <Route path="/admin/orders" element={<AdminOrdersPage />} />
           <Route path="/admin/books" element={<AdminBooksPage />} />
           <Route path="/admin/users" element={<AdminUsersPage />} /> */}
-        </Routes>
-      </BrowserRouter>
-      <Footer />
+
+            {/* auth routes */}
+            <Route path="/profile" element={<ProfilePage />} />
+            <Route path="/signup" element={<SignupPage />} />
+            <Route path="/login" element={<LoginPage />} />
+          </Routes>
+        </BrowserRouter>
+        <Footer />
+      </AuthContext.Provider>
     </div>
   );
 }
