@@ -9,7 +9,7 @@ const bookSchema = new mongoose.Schema({
     type: String,
   },
   price: {
-    type: Number,  
+    type: Number,
     required: true,
   },
   cover: {
@@ -17,6 +17,7 @@ const bookSchema = new mongoose.Schema({
     required: true,
     default: "",
   },
+  tags: { type: [String], default: [] },
 });
 
 module.exports = mongoose.model("Book", bookSchema);

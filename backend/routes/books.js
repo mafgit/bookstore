@@ -1,27 +1,22 @@
 const express = require("express");
 const {
-    createBook,
-    updateBook,
-    deleteBook,
-    getBook,
+  createBook,
+  updateBook,
+  deleteBook,
+  getBook,
 } = require("../controllers/booksController");
+const { check_admin } = require("../controllers/authController");
 
 const router = express.Router();
 
-// we will create this
-// const verifyAdmin = require("../middlewares/verifyAdmin");
-
-// CREATE BOOK 
-// router.post("/", verifyAdmin, createBook);
-router.post("/", createBook);
+// CREATE BOOK
+router.post("/", check_admin, createBook);
 
 // UPDATE BOOK
-// router.put("/:id", verifyAdmin, updateBook);
-router.put("/:id", updateBook);
+router.put("/:id", check_admin, updateBook);
 
 // DELETE BOOK
-// router.delete("/:id", verifyAdmin, deleteBook);
-router.delete("/:id", deleteBook);
+router.delete("/:id", check_admin, deleteBook);
 
 // GET BOOK
 router.get("/find/:id", getBook);
