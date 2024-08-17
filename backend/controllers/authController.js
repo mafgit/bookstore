@@ -67,7 +67,11 @@ const check_auth = (req, res, next) => {
     next();
   } else {
     // res.redirect("/login");
-    res.status(401).json({ msg: "Only logged in users can do this operation" });
+    res.status(401).json({
+      msg: "Only logged in users can do this operation",
+      auth: false,
+      admin: false,
+    });
   }
 };
 
@@ -76,7 +80,11 @@ const check_admin = (req, res, next) => {
     next();
   } else {
     // res.redirect("/login");
-    res.status(401).json({ msg: "Only admins can do this operation" });
+    res.status(401).json({
+      msg: "Only admins can do this operation",
+      admin: false,
+      auth: !!req.session.user,
+    });
   }
 };
 
