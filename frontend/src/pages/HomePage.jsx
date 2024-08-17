@@ -9,7 +9,7 @@ const HomePage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/get_book?tags=trending")
+      .get("http://localhost:5000/search?tags=trending")
       .then((data) => {
         setTrendingBooks(data);
       })
@@ -18,7 +18,7 @@ const HomePage = () => {
       });
 
     axios
-      .get("http://localhost:5000/get_book?tags=popular")
+      .get("http://localhost:5000/search?tags=popular")
       .then((data) => {
         setPopularBooks(data);
       })
