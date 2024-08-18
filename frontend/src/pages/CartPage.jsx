@@ -13,7 +13,7 @@ const CartPage = () => {
 
       data2.forEach((id) => {
         axios
-          .get("http://localhost:5000/api/books/get_book/" + id)
+          .get("http://127.0.0.1:5000/api/books/get_book/" + id)
           .then((res) => {
             setBooks([...books, res.data.book]);
           })

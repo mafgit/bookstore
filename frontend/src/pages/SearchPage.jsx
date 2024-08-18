@@ -13,7 +13,7 @@ const SearchPage = () => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/search?text=${searchParams.get(
+        `http://127.0.0.1:5000/search?text=${searchParams.get(
           "text"
         )}&tags=${searchParams.get("tags")}`
       )

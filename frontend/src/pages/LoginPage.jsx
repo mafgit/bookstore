@@ -25,7 +25,11 @@ const LoginPage = () => {
         onSubmit={(e) => {
           e.preventDefault();
           axios
-            .post("http://localhost:5000/api/auth/login", { email, password })
+            .post(
+              "http://127.0.0.1:5000/api/auth/login",
+              { email, password },
+              { withCredentials: true }
+            )
             .then((res) => {
               console.log(res);
               if (res.data.loggedIn === true) {

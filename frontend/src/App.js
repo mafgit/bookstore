@@ -25,7 +25,9 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/auth/check_auth") //fixed here
+      .get("http://127.0.0.1:5000/api/auth/check_auth", {
+        withCredentials: true,
+      }) //fixed here
       .then((res) => {
         if (res.data.auth === true) {
           setName(res.data.user.name);
@@ -34,7 +36,9 @@ function App() {
           setLoggedIn(true);
 
           axios
-            .get("http://localhost:5000/api/auth/check_admin") //fixed here
+            .get("http://127.0.0.1:5000/api/auth/check_admin", {
+              withCredentials: true,
+            }) //fixed here
             .then((res) => {
               if (res.data.admin === true) {
                 setIsAdmin(true);
