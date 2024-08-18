@@ -1,0 +1,17 @@
+.books-row {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 10px;
+  margin: 20px auto;
+}
+
+.books-row .row-name {
+  display: flex;
+  gap: 5px;
+}
+
+.books-row .books {
+  display: flex;
+  gap: 10px;
+}

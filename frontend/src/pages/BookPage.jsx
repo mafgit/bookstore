@@ -2,6 +2,15 @@ import { useEffect, useState } from "react";
 import Book from "../components/Book";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import "../styles/BookPage.css";
+import {
+  FaCartShopping,
+  FaMoneyBill,
+  FaMoneyBills,
+  FaMoneyBillWave,
+  FaWallet,
+} from "react-icons/fa6";
+import BooksRow from "../components/BooksRow";
 
 const BookPage = () => {
   const [book, setBook] = useState({});
@@ -24,8 +33,13 @@ const BookPage = () => {
       .catch((err) => console.log(err));
   }, [bid]);
 
+  const pickRandomColor = () => {
+    const colors = ["#7583ff", "#64c1ff", "#fa75ff", "#75ff81", "#ff8575"];
+    return colors[Math.floor(Math.random() * colors.length)];
+  };
+
   return (
-    <div className="book-page">
+    <div className="book-page page">
       <div className="main">
         <div className="left">
           <img src={book.cover} alt="cover" />
@@ -35,16 +49,30 @@ const BookPage = () => {
           <div className="tags">
             {book.tags &&
               book.tags.map((tag, i) => (
-                <div className="tag" key={i}>
+                <div
+                  className="tag"
+                  key={i}
+                  style={{
+                    border: `2px solid ${pickRandomColor()}`,
+                  }}
+                >
                   {tag}
                 </div>
               ))}
           </div>
           <p>{book.description}</p>
+
+          <p className="price">
+            <FaWallet /> RS. {book.price}
+          </p>
+
+          <button className="add-btn">
+            <FaCartShopping /> Add to Cart
+          </button>
         </div>
       </div>
 
-      <div className="similar-books">
+      {/* <div className="similar-books">
         {similarBooks &&
           similarBooks.map((book) => (
             <Book
@@ -55,7 +83,8 @@ const BookPage = () => {
               title={book.title}
             />
           ))}
-      </div>
+      </div> */}
+      <BooksRow name="Similar books" books={similarBooks} />
     </div>
   );
 };

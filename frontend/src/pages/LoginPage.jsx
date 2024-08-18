@@ -1,7 +1,8 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../App";
 import { Link, Navigate, useNavigate } from "react-router-dom";
+import "../styles/LoginPage.css";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +20,7 @@ const LoginPage = () => {
 
   if (loggedIn) return <Navigate to="/" />;
   return (
-    <div className="login-page">
+    <div className="login-page page">
       <form
         className="login-form"
         onSubmit={(e) => {
@@ -64,10 +65,9 @@ const LoginPage = () => {
           />
         </div>
 
-        <button>Login</button>
-
         <div className="field">
-          <p>
+          <button>Login</button>
+          <p style={{ marginTop: "10px" }}>
             If you do have an account, then <Link to="/signup">Signup</Link>
           </p>
         </div>

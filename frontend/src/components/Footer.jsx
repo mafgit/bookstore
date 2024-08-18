@@ -1,22 +1,27 @@
 import { FaFire, FaGithub } from "react-icons/fa6";
+import "../styles/Footer.css";
 
 const Footer = () => {
   return (
     <footer>
       <div className="heading">
-        <FaFire /> <h3>Bookstore</h3>
+        <FaFire className="fire" /> <h3>Bookstore</h3>
       </div>
 
       <p>Made by</p>
       <div className="line">
         <div className="left">
           <FaGithub />
-          <a>mafgit</a>
+          <a href="https://github.com/mafgit" target="_blank">
+            mafgit
+          </a>
         </div>
 
         <div className="right">
           <FaGithub />
-          <a>sarimbinasif</a>
+          <a href="https://github.com/sarimbinasif" target="_blank">
+            sarimbinasif
+          </a>
         </div>
       </div>
     </footer>

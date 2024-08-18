@@ -25,7 +25,7 @@ const CartPage = () => {
   }, []);
 
   return (
-    <div className="cart-page">
+    <div className="cart-page page">
       {books.map((book) => (
         <div className="cart-item">
           <div className="left">

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import BooksRow from "../components/BooksRow";
 import SearchInput from "../components/SearchInput";
 import axios from "axios";
+import "../styles/HomePage.css";
 
 const HomePage = () => {
   const [trendingBooks, setTrendingBooks] = useState([]);
@@ -28,7 +29,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="home-page">
+    <div className="home-page page">
       <SearchInput />
       {trendingBooks && trendingBooks.length ? (
         <BooksRow name="Trending books" books={trendingBooks} />

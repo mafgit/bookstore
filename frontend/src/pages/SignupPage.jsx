@@ -12,7 +12,7 @@ const SignupPage = () => {
 
   if (loggedIn) return <Navigate to="/" />;
   return (
-    <div className="login-page">
+    <div className="login-page page">
       <form
         className="login-form"
         onSubmit={(e) => {
@@ -67,10 +67,9 @@ const SignupPage = () => {
           />
         </div>
 
-        <button>Signup</button>
-
         <div className="field">
-          <p>
+          <button>Signup</button>
+          <p style={{ marginTop: "10px" }}>
             If you already have an account, then <Link to="/login">Login</Link>
           </p>
         </div>
