@@ -26,17 +26,17 @@ function App() {
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/auth/check_auth") //fixed here
-      .then((data) => {
-        if (data.auth === true) {
-          setName(data.user.name);
-          setEmail(data.user.email);
-          setId(data.user.id);
+      .then((res) => {
+        if (res.data.auth === true) {
+          setName(res.data.user.name);
+          setEmail(res.data.user.email);
+          setId(res.data.user.id);
           setLoggedIn(true);
 
           axios
             .get("http://localhost:5000/api/auth/check_admin") //fixed here
-            .then((data) => {
-              if (data.admin === true) {
+            .then((res) => {
+              if (res.data.admin === true) {
                 setIsAdmin(true);
               }
             })

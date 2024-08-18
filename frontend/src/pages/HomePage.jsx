@@ -10,20 +10,20 @@ const HomePage = () => {
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/books/search?tags=trending") // fixed here
-      .then((response) => {
-        setTrendingBooks(response.data);
+      .then((res) => {
+        setTrendingBooks(res.data.books);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
 
     axios
       .get("http://localhost:5000/api/books/search?tags=popular") // fixed here
-      .then((response) => {
-        setPopularBooks(response.data);
+      .then((res) => {
+        setPopularBooks(res.data.books);
       })
       .catch((err) => {
-        console.log(err.response.data);
+        console.log(err);
       });
   }, []);
 

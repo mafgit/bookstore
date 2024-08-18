@@ -17,13 +17,12 @@ const SearchPage = () => {
           "text"
         )}&tags=${searchParams.get("tags")}`
       )
-      .then((data) => {
-        setBooks(data);
+      .then((res) => {
+        setBooks(res.data.books);
       })
       .catch((error) => {
         console.error("There was an error fetching the books!", error);
       });
-      ;
   }, [search, searchParams]);
 
   return (

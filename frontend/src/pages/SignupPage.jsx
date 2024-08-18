@@ -1,13 +1,14 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../App";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { loggedIn } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   if (loggedIn) return <Navigate to="/" />;
   return (
@@ -17,9 +18,18 @@ const SignupPage = () => {
         onSubmit={(e) => {
           e.preventDefault();
           axios
-            .post("http://localhost:5000/signup", { name, email, password })
+            .post("http://localhost:5000/api/auth/signup", {
+              name,
+              email,
+              password,
+            })
             .then((res) => {
-              console.log(res);
+              console.log(res.data);
+              if (res.data.registered === true) {
+                navigate("/login");
+              } else {
+                alert("There was an error while signing up");
+              }
             })
             .catch((err) => {
               console.log(err);
@@ -54,6 +64,12 @@ const SignupPage = () => {
         </div>
 
         <button>Signup</button>
+
+        <div className="field">
+          <p>
+            If you already have an account, then <Link to="/login">Login</Link>
+          </p>
+        </div>
       </form>
     </div>
   );

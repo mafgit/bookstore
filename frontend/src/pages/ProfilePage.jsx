@@ -11,8 +11,8 @@ const ProfilePage = () => {
   useEffect(async () => {
     axios
       .get("http://localhost:5000/api/orders/get_orders/" + id)
-      .then((data) => {
-        setOrders(data);
+      .then((res) => {
+        setOrders(res.data.orders);
       })
       .catch((err) => {
         console.log(err);

@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../App";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { loggedIn } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   if (loggedIn) return <Navigate to="/" />;
   return (
@@ -16,9 +17,12 @@ const LoginPage = () => {
         onSubmit={(e) => {
           e.preventDefault();
           axios
-            .post("http://localhost:5000/login", { email, password })
+            .post("http://localhost:5000/api/auth/login", { email, password })
             .then((res) => {
               console.log(res);
+              if (res.data.auth === true) {
+                navigate("/");
+              }
             })
             .catch((err) => {
               console.log(err);
@@ -44,6 +48,12 @@ const LoginPage = () => {
         </div>
 
         <button>Login</button>
+
+        <div className="field">
+          <p>
+            If you do have an account, then <Link to="/signup">Signup</Link>
+          </p>
+        </div>
       </form>
     </div>
   );

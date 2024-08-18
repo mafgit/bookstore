@@ -18,7 +18,7 @@ const signup = async (req, res, next) => {
       });
 
       //   res.redirect("/login");
-      res.json({ msg: "User has been registered" });
+      res.json({ msg: "User has been registered", registered: true });
     });
   }
 };

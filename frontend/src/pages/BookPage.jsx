@@ -11,15 +11,15 @@ const BookPage = () => {
   useEffect(() => {
     axios
       .get("http://localhost:5000/api/books/get_book/" + bid)
-      .then((data) => {
-        setBook(data);
+      .then((res) => {
+        setBook(res.data.book);
       })
       .catch((err) => console.log(err));
 
     axios
       .get("http://localhost:5000/api/books/get_similar_books/" + bid)
-      .then((data) => {
-        setSimilarBooks(data);
+      .then((res) => {
+        setSimilarBooks(res.data.books);
       })
       .catch((err) => console.log(err));
   });
