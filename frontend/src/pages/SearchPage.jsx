@@ -4,6 +4,7 @@ import Filters from "../components/Filters";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
+import "../styles/SearchPage.css";
 
 const SearchPage = () => {
   const [search, setSearch] = useState("");
