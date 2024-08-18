@@ -49,7 +49,18 @@ function App() {
   return (
     <div className="App">
       <AuthContext.Provider
-        value={{ loggedIn, isAdmin, name, email, id, setLoggedIn, setIsAdmin }}
+        value={{
+          loggedIn,
+          isAdmin,
+          name,
+          email,
+          id,
+          setLoggedIn,
+          setIsAdmin,
+          setName,
+          setEmail,
+          setId,
+        }}
       >
         <BrowserRouter>
           <Navbar />

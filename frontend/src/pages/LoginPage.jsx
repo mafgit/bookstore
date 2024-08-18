@@ -6,7 +6,15 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { loggedIn } = useContext(AuthContext);
+  const {
+    loggedIn,
+    setLoggedIn,
+    setName: setUserName,
+    setEmail: setUserEmail,
+    isAdmin,
+    setIsAdmin,
+    setId,
+  } = useContext(AuthContext);
   const navigate = useNavigate();
 
   if (loggedIn) return <Navigate to="/" />;
@@ -21,6 +29,11 @@ const LoginPage = () => {
             .then((res) => {
               console.log(res);
               if (res.data.loggedIn === true) {
+                setLoggedIn(true);
+                setUserName(res.data.user.name);
+                setUserEmail(res.data.user.email);
+                setId(res.data.user.id);
+                setIsAdmin(res.data.user.is_admin);
                 navigate("/");
               }
             })

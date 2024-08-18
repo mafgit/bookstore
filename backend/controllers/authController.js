@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User");
 
 //SIGNUP USER
-const signup = async (req, res, next) => {
+const signup = async (req, res) => {
   const { name, email, password } = req.body;
   const user = await User.findOne({ email });
   if (user) {
@@ -24,7 +24,7 @@ const signup = async (req, res, next) => {
 };
 
 //LOGIN USER
-const login = async (req, res, next) => {
+const login = async (req, res) => {
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (user) {
@@ -32,7 +32,7 @@ const login = async (req, res, next) => {
     if (match) {
       req.session.save((err) => {
         if (err) {
-          console.log("Session could not be saved");
+          // console.log("Session could not be saved");
         } else {
           req.session.user = {
             id: user.id,
@@ -41,10 +41,15 @@ const login = async (req, res, next) => {
             is_admin: user.is_admin,
           };
 
-          console.log("Session saved: ", req.session);
+          // console.log("Session saved: ", req.session);
           //   res.redirect("/dashboard");
           res.json({
-            user: { id: user.id, name: user.name, email: user.email },
+            user: {
+              id: user.id,
+              name: user.name,
+              email: user.email,
+              is_admin: user.is_admin,
+            },
             msg: "User has logged in successfully",
             loggedIn: true,
           });
@@ -58,7 +63,7 @@ const login = async (req, res, next) => {
   }
 };
 
-const logout = async (req, res, next) => {
+const logout = async (req, res) => {
   req.session.destroy(() => console.log("User has logged out"));
   //   res.redirect("/login");
 };

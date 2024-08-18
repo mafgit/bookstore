@@ -30,12 +30,12 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <SearchInput />
-      {trendingBooks.length > 0 ? (
+      {trendingBooks && trendingBooks.length ? (
         <BooksRow name="Trending books" books={trendingBooks} />
       ) : (
         <p>No trending books found.</p>
       )}
-      {popularBooks.length > 0 ? (
+      {popularBooks && popularBooks.length ? (
         <BooksRow name="Popular books" books={popularBooks} />
       ) : (
         <p>No popular books found.</p>

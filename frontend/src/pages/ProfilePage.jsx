@@ -3,10 +3,21 @@ import Order from "../components/Order";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../App";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const ProfilePage = () => {
-  const { email, name, id } = useContext(AuthContext);
+  const {
+    email,
+    name,
+    id,
+    setLoggedIn,
+    setUserName,
+    setUserEmail,
+    setId,
+    setIsAdmin,
+  } = useContext(AuthContext);
   const [orders, setOrders] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(async () => {
     axios
@@ -25,7 +36,26 @@ const ProfilePage = () => {
         <FaUser />
         <p>Name: {name}</p>
         <p>Email: {email}</p>
-        <button>Logout</button>
+        <button
+          onClick={() => {
+            axios
+              .get("http://localhost:5000/api/auth/logout")
+              .then((res) => {
+                setLoggedIn(false);
+                setUserName("");
+                setUserEmail("");
+                setId("");
+                setIsAdmin(false);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+
+            navigate("/");
+          }}
+        >
+          Logout
+        </button>
       </div>
 
       <div className="orders">
