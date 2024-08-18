@@ -3,6 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100vw;
 }
 
 .login-form {
@@ -25,11 +26,12 @@
   flex-direction: column;
   text-align: center;
   width: 100%;
+  gap: 5px;
 }
 
 .login-form input {
   width: 100%;
-  background-color: rgba(219, 219, 219, 0.8);
+  background-color: #fff;
   padding: 5px 10px;
   border-radius: 5px;
 }

@@ -9,6 +9,7 @@
 .books-row .row-name {
   display: flex;
   gap: 5px;
+  align-items: center;
 }
 
 .books-row .books {

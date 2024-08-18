@@ -28,7 +28,7 @@ button {
 }
 
 .page {
-  width: 1200px;
+  max-width: 1200px;
   margin: auto;
 }
 
@@ -39,4 +39,8 @@ h3 {
 .fire {
   color: #ffc320;
   font-size: 1.2em;
+}
+
+.App {
+  width: 100%;
 }
