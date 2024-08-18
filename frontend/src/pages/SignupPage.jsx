@@ -67,10 +67,9 @@ const SignupPage = () => {
           />
         </div>
 
-        <button>Signup</button>
-
         <div className="field">
-          <p>
+          <button>Signup</button>
+          <p style={{ marginTop: "10px" }}>
             If you already have an account, then <Link to="/login">Login</Link>
           </p>
         </div>
