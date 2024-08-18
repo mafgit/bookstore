@@ -23,6 +23,7 @@ const bookSchema = new mongoose.Schema({
     default: "",
   },
   tags: { type: [String], default: [] },
+  releaseDate:{type: Date, default:Date.now}
 });
 
 module.exports = mongoose.model("Book", bookSchema);
