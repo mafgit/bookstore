@@ -20,7 +20,7 @@ const LoginPage = () => {
             .post("http://localhost:5000/api/auth/login", { email, password })
             .then((res) => {
               console.log(res);
-              if (res.data.auth === true) {
+              if (res.data.loggedIn === true) {
                 navigate("/");
               }
             })
