@@ -33,7 +33,7 @@ const ProfilePage = () => {
   }, []);
 
   return (
-    <div className="profile-page">
+    <div className="profile-page page">
       <div className="account">
         <FaUser />
         <p>Name: {name}</p>

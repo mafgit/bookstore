@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import "../styles/Book.css";
 
 const Book = ({ id, title, price, cover }) => {
   const navigate = useNavigate();
@@ -7,7 +8,7 @@ const Book = ({ id, title, price, cover }) => {
       <img src={cover} alt="cover" />
       <div className="bottom">
         <p>{title}</p>
-        <p>{price}</p>
+        <p>RS. {price}</p>
       </div>
     </div>
   );

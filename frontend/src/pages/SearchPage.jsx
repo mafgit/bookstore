@@ -27,7 +27,7 @@ const SearchPage = () => {
   }, [search, searchParams]);
 
   return (
-    <div className="search-page">
+    <div className="search-page page">
       <SearchInput search={search} setSearch={setSearch} />
       <div className="books-and-filters">
         <div className="books">

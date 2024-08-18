@@ -1,5 +1,6 @@
 import { FaFire } from "react-icons/fa6";
 import Book from "./Book";
+import "../styles/BooksRow.css";
 
 const BooksRow = ({ name, books }) => {
   console.log(books);
@@ -7,7 +8,7 @@ const BooksRow = ({ name, books }) => {
   return (
     <div className="books-row">
       <div className="row-name">
-        <FaFire />
+        <FaFire className="fire" />
         <h3>{name}</h3>
       </div>
 

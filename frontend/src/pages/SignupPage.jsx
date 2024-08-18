@@ -12,7 +12,7 @@ const SignupPage = () => {
 
   if (loggedIn) return <Navigate to="/" />;
   return (
-    <div className="login-page">
+    <div className="login-page page">
       <form
         className="login-form"
         onSubmit={(e) => {

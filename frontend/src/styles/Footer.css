@@ -1,0 +1,33 @@
+footer {
+  background-color: #1c1c1c;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 20px;
+  gap: 10px;
+}
+
+footer .heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: #ffc320;
+}
+
+footer .line {
+  display: flex;
+  gap: 10px;
+}
+
+footer a {
+  color: #fff !important;
+}
+
+footer .left,
+footer .right {
+  display: flex;
+  gap: 5px;
+}
