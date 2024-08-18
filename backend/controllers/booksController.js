@@ -39,16 +39,15 @@ const deleteBook = async (req, res) => {
 };
 
 // GET BOOK BY ID
-// const getBook = async (req, res) => {
-//     try {
-//         const searchedBook = await Book.findById(req.params.id)
-//          console.log(req.body)
-//          res.status(200).json({book:searchedBook})
-//      }
-//      catch (err) {
-//         console.log(err);
-//      }
-// };
+const getBook = async (req, res) => {
+  try {
+    const searchedBook = await Book.findById(req.params.id);
+    console.log(req.body);
+    res.status(200).json({ book: searchedBook });
+  } catch (err) {
+    console.log(err);
+  }
+};
 
 // SEARCH BOOKS BY TEXT AND TAGS
 const searchBooks = async (req, res) => {
@@ -100,4 +99,5 @@ module.exports = {
   deleteBook,
   searchBooks,
   getBooksBySorting,
+  getBook,
 };

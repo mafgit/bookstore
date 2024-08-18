@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 
 const BookPage = () => {
   const [book, setBook] = useState({});
-  const [similarBooks, setSimilarBooks] = useState({});
+  const [similarBooks, setSimilarBooks] = useState([]);
   const { bid } = useParams();
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const BookPage = () => {
         setSimilarBooks(res.data.books);
       })
       .catch((err) => console.log(err));
-  });
+  }, [bid]);
 
   return (
     <div className="book-page">
@@ -33,26 +33,28 @@ const BookPage = () => {
         <div className="right">
           <h3>{book.title}</h3>
           <div className="tags">
-            {book.tags.map((tag, i) => (
-              <div className="tag" key={i}>
-                {tag}
-              </div>
-            ))}
+            {book.tags &&
+              book.tags.map((tag, i) => (
+                <div className="tag" key={i}>
+                  {tag}
+                </div>
+              ))}
           </div>
           <p>{book.description}</p>
         </div>
       </div>
 
       <div className="similar-books">
-        {similarBooks.map((book) => (
-          <Book
-            key={book.id}
-            cover={book.cover}
-            id={book.id}
-            price={book.price}
-            title={book.title}
-          />
-        ))}
+        {similarBooks &&
+          similarBooks.map((book) => (
+            <Book
+              key={book._id}
+              cover={book.cover}
+              id={book._id}
+              price={book.price}
+              title={book.title}
+            />
+          ))}
       </div>
     </div>
   );

@@ -19,8 +19,8 @@ const Order = ({ id, user, books, status, amount, createdAt, updatedAt }) => {
               cover={book.cover}
               price={book.price}
               title={book.title}
-              key={book.id}
-              id={book.id}
+              key={book._id}
+              id={book._id}
             />
           ))}
         </div>

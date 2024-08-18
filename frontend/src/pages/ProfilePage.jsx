@@ -68,8 +68,8 @@ const ProfilePage = () => {
             amount={order.amount}
             books={order.books}
             createdAt={order.createdAt}
-            id={order.id}
-            key={order.id}
+            id={order._id}
+            key={order._id}
             status={order.status}
             updatedAt={order.updatedAt}
             user={order.user}

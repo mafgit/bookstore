@@ -5,6 +5,7 @@ const {
   deleteBook,
   searchBooks,
   getBooksBySorting,
+  getBook,
 } = require("../controllers/booksController");
 const { check_admin } = require("../controllers/authController");
 
@@ -12,6 +13,8 @@ const router = express.Router();
 
 // SEARCH BOOKS BY TEXT AND TAGS
 router.get("/search", searchBooks);
+
+router.get("/get_book/:id", getBook);
 
 // GET BOOKS WITH SORTING
 router.get("/", getBooksBySorting);

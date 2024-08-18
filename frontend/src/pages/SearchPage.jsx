@@ -33,9 +33,9 @@ const SearchPage = () => {
         <div className="books">
           {books.map((book) => (
             <Book
-              key={book.id}
+              key={book._id}
               cover={book.cover}
-              id={book.id}
+              id={book._id}
               price={book.price}
               title={book.title}
             />
