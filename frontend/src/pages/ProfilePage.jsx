@@ -10,7 +10,7 @@ const ProfilePage = () => {
 
   useEffect(async () => {
     axios
-      .get("http://localhost:5000/get_orders/" + id)
+      .get("http://localhost:5000/api/orders/get_orders/" + id)
       .then((data) => {
         setOrders(data);
       })

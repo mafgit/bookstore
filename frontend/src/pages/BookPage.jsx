@@ -10,14 +10,14 @@ const BookPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/get_book/" + bid)
+      .get("http://localhost:5000/api/books/get_book/" + bid)
       .then((data) => {
         setBook(data);
       })
       .catch((err) => console.log(err));
 
     axios
-      .get("http://localhost:5000/get_similar_books/" + bid)
+      .get("http://localhost:5000/api/books/get_similar_books/" + bid)
       .then((data) => {
         setSimilarBooks(data);
       })

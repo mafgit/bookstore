@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { FaCartShopping, FaFire, FaLock, FaUser } from "react-icons/fa6";
 import { AuthContext } from "../App";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const { loggedIn, isAdmin } = useContext(AuthContext);
@@ -13,20 +14,21 @@ const Navbar = () => {
         <h3>Bookstore</h3>
       </div>
       <div className="right">
-        <button>
+        <Link to="/cart">
           <FaCartShopping />
-        </button>
+        </Link>
+
         {isAdmin && (
-          <button>
+          <Link to="/admin">
             <FaLock />
-          </button>
+          </Link>
         )}
         {loggedIn ? (
-          <button>
+          <Link to="/profile">
             <FaUser />
-          </button>
+          </Link>
         ) : (
-          <button>Login</button>
+          <Link to="/login">Login</Link>
         )}
       </div>
     </nav>

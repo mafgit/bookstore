@@ -1,5 +1,5 @@
 import "./index.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import BookPage from "./pages/BookPage";
 import HomePage from "./pages/HomePage";
 import SearchPage from "./pages/SearchPage";
@@ -25,7 +25,7 @@ function App() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/auth/check_auth") //fixed here
+      .get("http://localhost:5000/api/auth/check_auth") //fixed here
       .then((data) => {
         if (data.auth === true) {
           setName(data.user.name);
@@ -34,7 +34,7 @@ function App() {
           setLoggedIn(true);
 
           axios
-            .get("http://localhost:5000/auth/check_admin") //fixed here
+            .get("http://localhost:5000/api/auth/check_admin") //fixed here
             .then((data) => {
               if (data.admin === true) {
                 setIsAdmin(true);
@@ -51,8 +51,8 @@ function App() {
       <AuthContext.Provider
         value={{ loggedIn, isAdmin, name, email, id, setLoggedIn, setIsAdmin }}
       >
-        <Navbar />
         <BrowserRouter>
+          <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/book/:bid" element={<BookPage />} />
@@ -76,8 +76,8 @@ function App() {
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/login" element={<LoginPage />} />
           </Routes>
+          <Footer />
         </BrowserRouter>
-        <Footer />
       </AuthContext.Provider>
     </div>
   );

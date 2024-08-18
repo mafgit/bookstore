@@ -1,5 +1,5 @@
 const express = require("express");
-const cors = require('cors');
+const cors = require("cors");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
@@ -7,7 +7,7 @@ require("dotenv").config();
 
 const authRoute = require("./routes/auth.js");
 const booksRoute = require("./routes/books.js");
-
+const ordersRoute = require("./routes/orders.js");
 
 const app = express();
 
@@ -33,12 +33,10 @@ mongoose
   .then(() => console.log("Connected to MongoDB"))
   .catch((err) => console.log(err));
 
-
-
 //middlewares
-app.use("/api/auth", authRoute)
-app.use("/api/books", booksRoute)
-
+app.use("/api/auth", authRoute);
+app.use("/api/books", booksRoute);
+app.use("/api/orders", ordersRoute);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server: http://localhost:${PORT}`));
