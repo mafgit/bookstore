@@ -4,7 +4,7 @@ const {
   updateBook,
   deleteBook,
   searchBooks,
-  getBooksBySorting
+  getBooksBySorting,
 } = require("../controllers/booksController");
 const { check_admin } = require("../controllers/authController");
 
@@ -24,6 +24,5 @@ router.put("/:id", check_admin, updateBook);
 
 // DELETE BOOK
 router.delete("/:id", check_admin, deleteBook);
-
 
 module.exports = router;

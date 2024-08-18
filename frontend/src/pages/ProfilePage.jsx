@@ -19,7 +19,7 @@ const ProfilePage = () => {
   const [orders, setOrders] = useState([]);
   const navigate = useNavigate();
 
-  useEffect(async () => {
+  useEffect(() => {
     axios
       .get("http://127.0.0.1:5000/api/orders/get_orders/" + id, {
         withCredentials: true,
@@ -64,7 +64,16 @@ const ProfilePage = () => {
 
       <div className="orders">
         {orders.map((order) => (
-          <Order />
+          <Order
+            amount={order.amount}
+            books={order.books}
+            createdAt={order.createdAt}
+            id={order.id}
+            key={order.id}
+            status={order.status}
+            updatedAt={order.updatedAt}
+            user={order.user}
+          />
         ))}
       </div>
     </div>

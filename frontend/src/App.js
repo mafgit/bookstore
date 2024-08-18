@@ -71,7 +71,7 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/book/:bid" element={<BookPage />} />
-            <Route path="/search/:query" element={<SearchPage />} />
+            <Route path="/search" element={<SearchPage />} />
             <Route path="/cart" element={<CartPage />} />
 
             {/* admin routes */}

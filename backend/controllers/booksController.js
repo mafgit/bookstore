@@ -6,7 +6,7 @@ const createBook = async (req, res) => {
   try {
     const savedBook = await newBook.save();
     console.log(req.body);
-    res.status(200).json(savedBook);
+    res.status(200).json({ book: savedBook });
   } catch (err) {
     console.log(err);
   }
@@ -21,7 +21,7 @@ const updateBook = async (req, res) => {
       { new: true }
     );
     console.log(req.body);
-    res.status(200).json(updatedBook);
+    res.status(200).json({ book: updatedBook });
   } catch (err) {
     console.log(err);
   }
@@ -32,7 +32,7 @@ const deleteBook = async (req, res) => {
   try {
     await Book.findByIdAndDelete(req.params.id);
     console.log(req.body);
-    res.status(200).json("Book Deleted");
+    res.status(200).json({ msg: "Book Deleted" });
   } catch (err) {
     console.log(err);
   }
@@ -43,7 +43,7 @@ const deleteBook = async (req, res) => {
 //     try {
 //         const searchedBook = await Book.findById(req.params.id)
 //          console.log(req.body)
-//          res.status(200).json(searchedBook)
+//          res.status(200).json({book:searchedBook})
 //      }
 //      catch (err) {
 //         console.log(err);
@@ -53,8 +53,10 @@ const deleteBook = async (req, res) => {
 // SEARCH BOOKS BY TEXT AND TAGS
 const searchBooks = async (req, res) => {
   try {
-    const text = req.query.text;
-    const tags = req.query.tags ? req.query.tags.split(",") : [];
+    let text = req.query.text;
+    if (text == undefined) text = "";
+
+    const { tags } = req.query;
 
     const query = {};
     if (text) {
@@ -68,9 +70,10 @@ const searchBooks = async (req, res) => {
     }
 
     const books = await Book.find(query);
+    console.log(books);
 
     // Return an empty array instead of a 404 error when no books are found
-    res.status(200).json(books);
+    res.status(200).json({ books: books });
   } catch (err) {
     console.log(err);
     res
@@ -84,7 +87,7 @@ const getBooksBySorting = async (req, res) => {
   try {
     const sort = req.query.sort === "asc" ? 1 : -1;
     const books = await Book.find().sort({ price: sort });
-    res.json(books);
+    res.json({ books: books });
   } catch (err) {
     console.log(err);
   }

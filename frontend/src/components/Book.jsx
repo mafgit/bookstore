@@ -1,4 +1,4 @@
-const Book = ({ title, price, cover }) => {
+const Book = ({ id, title, price, cover }) => {
   return (
     <div className="book">
       <img src={cover} alt="cover" />

@@ -33,8 +33,10 @@ const BookPage = () => {
         <div className="right">
           <h3>{book.title}</h3>
           <div className="tags">
-            {book.tags.map((tag) => (
-              <div className="tag">{tag}</div>
+            {book.tags.map((tag, i) => (
+              <div className="tag" key={i}>
+                {tag}
+              </div>
             ))}
           </div>
           <p>{book.description}</p>
@@ -43,7 +45,13 @@ const BookPage = () => {
 
       <div className="similar-books">
         {similarBooks.map((book) => (
-          <Book />
+          <Book
+            key={book.id}
+            cover={book.cover}
+            id={book.id}
+            price={book.price}
+            title={book.title}
+          />
         ))}
       </div>
     </div>

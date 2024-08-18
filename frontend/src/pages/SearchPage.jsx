@@ -9,11 +9,12 @@ const SearchPage = () => {
   const [search, setSearch] = useState("");
   let [searchParams] = useSearchParams();
   const [books, setBooks] = useState([]);
+  // console.log(searchParams.get("text"));
 
   useEffect(() => {
     axios
       .get(
-        `http://127.0.0.1:5000/search?text=${searchParams.get(
+        `http://127.0.0.1:5000/api/books/search?text=${searchParams.get(
           "text"
         )}&tags=${searchParams.get("tags")}`
       )
@@ -31,7 +32,13 @@ const SearchPage = () => {
       <div className="books-and-filters">
         <div className="books">
           {books.map((book) => (
-            <Book />
+            <Book
+              key={book.id}
+              cover={book.cover}
+              id={book.id}
+              price={book.price}
+              title={book.title}
+            />
           ))}
         </div>
         <Filters />

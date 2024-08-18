@@ -11,7 +11,13 @@ const BooksRow = ({ name, books }) => {
 
       <div className="books">
         {books.map((book) => (
-          <Book />
+          <Book
+            key={book.id}
+            cover={book.cover}
+            id={book.id}
+            price={book.price}
+            title={book.title}
+          />
         ))}
       </div>
     </div>
