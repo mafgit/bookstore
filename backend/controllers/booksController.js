@@ -55,7 +55,7 @@ const searchBooks = async (req, res) => {
     let text = req.query.text;
     if (text == undefined) text = "";
 
-    const { tags } = req.query;
+    const { tags, sortBy, sortOrder } = req.query;
 
     const query = {};
     if (text) {
@@ -64,14 +64,18 @@ const searchBooks = async (req, res) => {
         { description: { $regex: text, $options: "i" } },
       ];
     }
-    if (tags.length > 0) {
+    if (tags && tags.length > 0) {
       query.tags = { $in: tags };
     }
 
-    const books = await Book.find(query);
+    const sortOptions = {};
+    if (sortBy === 'price' || sortBy === 'releaseDate') {
+      sortOptions[sortBy] = sortOrder === 'desc' ? -1 : 1;
+    }
+
+    const books = await Book.find(query).sort(sortOptions);
     console.log(books);
 
-    // Return an empty array instead of a 404 error when no books are found
     res.status(200).json({ books: books });
   } catch (err) {
     console.log(err);
@@ -81,16 +85,6 @@ const searchBooks = async (req, res) => {
   }
 };
 
-// GET BOOKS BY SORTING
-const getBooksBySorting = async (req, res) => {
-  try {
-    const sort = req.query.sort === "asc" ? 1 : -1;
-    const books = await Book.find().sort({ price: sort });
-    res.json({ books: books });
-  } catch (err) {
-    console.log(err);
-  }
-};
 
 // exporting
 module.exports = {
@@ -98,6 +92,5 @@ module.exports = {
   updateBook,
   deleteBook,
   searchBooks,
-  getBooksBySorting,
   getBook,
 };

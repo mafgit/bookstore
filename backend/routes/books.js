@@ -4,7 +4,6 @@ const {
   updateBook,
   deleteBook,
   searchBooks,
-  getBooksBySorting,
   getBook,
 } = require("../controllers/booksController");
 const { check_admin } = require("../controllers/authController");
@@ -16,8 +15,8 @@ router.get("/search", searchBooks);
 
 router.get("/get_book/:id", getBook);
 
-// GET BOOKS WITH SORTING
-router.get("/", getBooksBySorting);
+// // GET BOOKS WITH SORTING
+// router.get("/", getBooksBySorting);
 
 // CREATE BOOK
 router.post("/", check_admin, createBook);
