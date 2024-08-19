@@ -1,0 +1,35 @@
+.admin-page {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 100px;
+}
+
+.admin-page > a {
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-direction: column;
+  color: #fff;
+  border-radius: 10px;
+}
+
+.admin-page > a:first-child {
+  background-color: rgb(0, 158, 206);
+}
+
+.admin-page > a:nth-child(2) {
+  background-color: rgb(0, 148, 99);
+}
+
+.admin-page > a:last-child {
+  background-color: rgb(221, 85, 7);
+}
+
+.admin-page > a > *:first-child {
+  font-size: 1.5em;
+}

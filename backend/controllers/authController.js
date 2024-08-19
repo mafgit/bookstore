@@ -101,5 +101,11 @@ router.get("/dashboard", check_auth, (req, res) => {
   });
 });
 
+const getUsers = (req, res) => {
+  User.find().then((data) => {
+    res.json({ users: data });
+  });
+};
+
 //exporting
-module.exports = { signup, login, logout, check_auth, check_admin };
+module.exports = { signup, login, logout, check_auth, check_admin, getUsers };

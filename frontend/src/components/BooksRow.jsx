@@ -3,7 +3,7 @@ import Book from "./Book";
 import "../styles/BooksRow.css";
 
 const BooksRow = ({ name, books }) => {
-  console.log(books);
+  // console.log(books);
 
   return (
     <div className="books-row">

@@ -17,6 +17,14 @@ const SearchInput = () => {
         onClick={() => {
           const newText = text.trim();
           // if (newText.length) {
+          if (
+            newText.includes("?") ||
+            newText.includes("=") ||
+            newText.includes(",") ||
+            newText.includes("&")
+          )
+            return;
+
           navigate("/search?text=" + newText + "&tags=");
           // }
         }}

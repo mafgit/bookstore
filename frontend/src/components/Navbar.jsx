@@ -19,11 +19,6 @@ const Navbar = () => {
           <FaCartShopping style={{ fontSize: "1.2em" }} />
         </Link>
 
-        {isAdmin && (
-          <Link className="link-btn" to="/admin">
-            <FaLock style={{ fontSize: "1.2em" }} />
-          </Link>
-        )}
         {loggedIn ? (
           <Link className="link-btn" to="/profile">
             <FaUser style={{ fontSize: "1.2em" }} />
@@ -31,6 +26,12 @@ const Navbar = () => {
         ) : (
           <Link className="link-btn login-btn" to="/login">
             Login
+          </Link>
+        )}
+
+        {isAdmin && (
+          <Link className="link-btn" to="/admin">
+            <FaLock style={{ fontSize: "1.2em" }} />
           </Link>
         )}
       </div>

@@ -5,7 +5,7 @@ const createBook = async (req, res) => {
   const newBook = new Book(req.body);
   try {
     const savedBook = await newBook.save();
-    console.log(req.body);
+    // console.log(req.body);
     res.status(200).json({ book: savedBook });
   } catch (err) {
     console.log(err);
@@ -20,7 +20,7 @@ const updateBook = async (req, res) => {
       { $set: req.body },
       { new: true }
     );
-    console.log(req.body);
+    // console.log(req.body);
     res.status(200).json({ book: updatedBook });
   } catch (err) {
     console.log(err);
@@ -31,7 +31,7 @@ const updateBook = async (req, res) => {
 const deleteBook = async (req, res) => {
   try {
     await Book.findByIdAndDelete(req.params.id);
-    console.log(req.body);
+    // console.log(req.body);
     res.status(200).json({ msg: "Book Deleted" });
   } catch (err) {
     console.log(err);
@@ -42,7 +42,7 @@ const deleteBook = async (req, res) => {
 const getBook = async (req, res) => {
   try {
     const searchedBook = await Book.findById(req.params.id);
-    console.log(req.body);
+    // console.log(req.body);
     res.status(200).json({ book: searchedBook });
   } catch (err) {
     console.log(err);
@@ -69,12 +69,12 @@ const searchBooks = async (req, res) => {
     }
 
     const sortOptions = {};
-    if (sortBy === 'price' || sortBy === 'releaseDate') {
-      sortOptions[sortBy] = sortOrder === 'desc' ? -1 : 1;
+    if (sortBy === "price" || sortBy === "releaseDate") {
+      sortOptions[sortBy] = sortOrder === "desc" ? -1 : 1;
     }
 
     const books = await Book.find(query).sort(sortOptions);
-    console.log(books);
+    // console.log(books);
 
     res.status(200).json({ books: books });
   } catch (err) {
@@ -84,7 +84,6 @@ const searchBooks = async (req, res) => {
       .json({ message: "An error occurred while searching for books." });
   }
 };
-
 
 // exporting
 module.exports = {

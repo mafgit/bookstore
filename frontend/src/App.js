@@ -13,6 +13,10 @@ import LoginPage from "./pages/LoginPage";
 import axios from "axios";
 import AuthRoute from "./pages/AuthRoute";
 import AdminRoute from "./pages/AdminRoute";
+import AdminPage from "./pages/AdminPage";
+import AdminUsersPage from "./pages/AdminUsersPage";
+import AdminOrdersPage from "./pages/AdminOrdersPage";
+import AdminBooksPage from "./pages/AdminBooksPage";
 
 export const AuthContext = createContext();
 
@@ -40,6 +44,8 @@ function App() {
               withCredentials: true,
             }) //fixed here
             .then((res) => {
+              console.log(res.data);
+
               if (res.data.admin === true) {
                 setIsAdmin(true);
               }
@@ -75,9 +81,38 @@ function App() {
             <Route path="/cart" element={<CartPage />} />
 
             {/* admin routes */}
-            {/* <Route path="/admin/orders" element={<AdminOrdersPage />} />
-          <Route path="/admin/books" element={<AdminBooksPage />} />
-          <Route path="/admin/users" element={<AdminUsersPage />} /> */}
+            <Route
+              path="/admin"
+              element={
+                <AdminRoute>
+                  <AdminPage />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/orders"
+              element={
+                <AdminRoute>
+                  <AdminOrdersPage />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/books"
+              element={
+                <AdminRoute>
+                  <AdminBooksPage />
+                </AdminRoute>
+              }
+            />
+            <Route
+              path="/admin/users"
+              element={
+                <AdminRoute>
+                  <AdminUsersPage />
+                </AdminRoute>
+              }
+            />
 
             {/* auth routes */}
             <Route
