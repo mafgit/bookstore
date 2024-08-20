@@ -10,8 +10,9 @@ const User = ({ id, name, email, createdAt, isAdmin }) => {
         <p>{name}</p>
         <p>{email}</p>
         <p>{createdAt}</p>
-        <p>Admin: {isAdmin}</p>
+        {isAdmin && <p className="admin">Admin</p>}
         <button
+          className="del-btn"
           onClick={() => {
             axios
               .delete("http://127.0.0.1:5000/api/auth/delete_user/" + id, {
