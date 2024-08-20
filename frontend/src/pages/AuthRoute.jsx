@@ -1,13 +1,17 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../App";
 import { Navigate } from "react-router-dom";
 
-const AuthRoute = ({ children }) => {
+const AuthRoute = ({ children, isLoading, setIsLoading }) => {
   const { loggedIn } = useContext(AuthContext);
-  if (!loggedIn) {
-    return <Navigate to={"/login"} replace={true} />;
+  if (isLoading) return <div></div>;
+  else {
+    if (loggedIn) {
+      return <>{children}</>;
+    } else {
+      return <Navigate to={"/login"} replace={true} />;
+    }
   }
-  return <>{children}</>;
 };
 
 export default AuthRoute;

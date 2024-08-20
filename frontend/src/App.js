@@ -26,6 +26,7 @@ function App() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
@@ -33,24 +34,13 @@ function App() {
         withCredentials: true,
       }) //fixed here
       .then((res) => {
+        setIsLoading(false);
         if (res.data.auth === true) {
           setName(res.data.user.name);
           setEmail(res.data.user.email);
           setId(res.data.user.id);
           setLoggedIn(true);
-
-          axios
-            .get("http://127.0.0.1:5000/api/auth/check_admin", {
-              withCredentials: true,
-            }) //fixed here
-            .then((res) => {
-              console.log(res.data);
-
-              if (res.data.admin === true) {
-                setIsAdmin(true);
-              }
-            })
-            .catch((err) => console.log(err));
+          setIsAdmin(res.data.user.is_admin);
         }
       })
       .catch((err) => console.log(err));
@@ -84,7 +74,7 @@ function App() {
             <Route
               path="/admin"
               element={
-                <AdminRoute>
+                <AdminRoute isLoading={isLoading} setIsLoading={setIsLoading}>
                   <AdminPage />
                 </AdminRoute>
               }
@@ -92,7 +82,7 @@ function App() {
             <Route
               path="/admin/orders"
               element={
-                <AdminRoute>
+                <AdminRoute isLoading={isLoading} setIsLoading={setIsLoading}>
                   <AdminOrdersPage />
                 </AdminRoute>
               }
@@ -100,7 +90,7 @@ function App() {
             <Route
               path="/admin/books"
               element={
-                <AdminRoute>
+                <AdminRoute isLoading={isLoading} setIsLoading={setIsLoading}>
                   <AdminBooksPage />
                 </AdminRoute>
               }
@@ -108,7 +98,7 @@ function App() {
             <Route
               path="/admin/users"
               element={
-                <AdminRoute>
+                <AdminRoute isLoading={isLoading} setIsLoading={setIsLoading}>
                   <AdminUsersPage />
                 </AdminRoute>
               }
@@ -118,7 +108,7 @@ function App() {
             <Route
               path="/profile"
               element={
-                <AuthRoute>
+                <AuthRoute isLoading={isLoading} setIsLoading={setIsLoading}>
                   <ProfilePage />
                 </AuthRoute>
               }
