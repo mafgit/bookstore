@@ -28,7 +28,7 @@ const SignupPage = () => {
               { withCredentials: true }
             )
             .then((res) => {
-              console.log(res.data);
+              // console.log(res.data);
               if (res.data.registered === true) {
                 navigate("/login");
               } else {

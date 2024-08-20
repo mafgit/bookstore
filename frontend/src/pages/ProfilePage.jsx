@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../App";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../styles/ProfilePage.css";
 
 const ProfilePage = () => {
   const {
@@ -35,7 +36,7 @@ const ProfilePage = () => {
   return (
     <div className="profile-page page">
       <div className="account">
-        <FaUser />
+        <FaUser className="account-img" />
         <p>Name: {name}</p>
         <p>Email: {email}</p>
         <button
@@ -56,6 +57,7 @@ const ProfilePage = () => {
               });
 
             navigate("/");
+            window.location.reload();
           }}
         >
           Logout

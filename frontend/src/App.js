@@ -36,6 +36,8 @@ function App() {
       .then((res) => {
         setIsLoading(false);
         if (res.data.auth === true) {
+          console.log(res.data.user.name);
+
           setName(res.data.user.name);
           setEmail(res.data.user.email);
           setId(res.data.user.id);
@@ -43,7 +45,10 @@ function App() {
           setIsAdmin(res.data.user.is_admin);
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        setIsLoading(false);
+      });
   }, []);
 
   return (
