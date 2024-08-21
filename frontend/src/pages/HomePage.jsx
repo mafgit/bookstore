@@ -30,7 +30,7 @@ const HomePage = () => {
 
   return (
     <div className="home-page page">
-      <SearchInput />
+      <SearchInput setSearch={() => {}} />
       {trendingBooks && trendingBooks.length ? (
         <BooksRow name="Trending books" books={trendingBooks} />
       ) : (

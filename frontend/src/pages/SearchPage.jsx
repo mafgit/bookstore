@@ -3,7 +3,7 @@ import Book from "../components/Book";
 import Filters from "../components/Filters";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import "../styles/SearchPage.css";
 
 const SearchPage = () => {
@@ -13,11 +13,14 @@ const SearchPage = () => {
   const [tags, setTags] = useState([]);
   const [tagsStr, setTagsStr] = useState("");
   console.log(searchParams.get("tags").split(","));
+  // const base = "http://127.0.0.1:5000/api/books/search";
+  const navigate = useNavigate();
 
   const addTag = (tag) => {
     let arr2 = [...tags, tag];
     setTags([...arr2]);
     setTagsStr([...arr2].join());
+    navigate(`/search?text=${search}&tags=${[...arr2].join()}`);
   };
 
   const removeTag = (tag) => {
@@ -31,6 +34,7 @@ const SearchPage = () => {
     }
     setTags([...arr2]);
     setTagsStr([...arr2].join());
+    navigate(`/search?text=${search}&tags=${[...arr2].join()}`);
   };
 
   useEffect(() => {
