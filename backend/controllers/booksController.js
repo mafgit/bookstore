@@ -74,7 +74,7 @@ const getBooks = async (req, res) => {
 // SEARCH BOOKS BY TEXT AND TAGS
 const searchBooks = async (req, res) => {
   try {
-    console.log(req.query);
+    // console.log(req.query);
     let text = req.query.text;
     if (text == undefined) text = "";
 
@@ -112,6 +112,37 @@ const searchBooks = async (req, res) => {
   }
 };
 
+const findSimilarBooks = async (req, res) => {
+  try {
+    // Find the original book
+    const originalBook = await Book.findById(req.params.id);
+    if (!originalBook) {
+      return res.status(404).json({ message: "Book not found" });
+    }
+
+    // Define the query for similar books
+    const query = {
+      _id: { $ne: req.params.id }, // Exclude the original book
+      $or: [
+        { tags: { $in: originalBook.tags } }, // Match any of the tags
+        { title: { $regex: originalBook.title, $options: "i" } }, // Match similar titles
+        { description: { $regex: originalBook.description, $options: "i" } }, // Match similar descriptions
+      ],
+    };
+
+    // Execute the query to find similar books
+    const similarBooks = await Book.find(query).limit(10); // Limit the number of results
+
+    // Return the results
+    return res.status(200).json({ books: similarBooks });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({
+      message: "An error occurred while searching for similar books.",
+    });
+  }
+};
+
 // exporting
 module.exports = {
   createBook,
@@ -120,4 +151,5 @@ module.exports = {
   searchBooks,
   getBook,
   getBooks,
+  findSimilarBooks,
 };

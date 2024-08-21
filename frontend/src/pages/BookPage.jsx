@@ -26,7 +26,7 @@ const BookPage = ({ cart, setCart, saveCart }) => {
       .catch((err) => console.log(err));
 
     axios
-      .get("http://127.0.0.1:5000/api/books/get_similar_books/" + bid)
+      .get("http://127.0.0.1:5000/api/books/find_similar_books/" + bid)
       .then((res) => {
         setSimilarBooks(res.data.books);
       })

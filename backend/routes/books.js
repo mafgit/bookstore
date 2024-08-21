@@ -6,6 +6,7 @@ const {
   searchBooks,
   getBook,
   getBooks,
+  findSimilarBooks,
 } = require("../controllers/booksController");
 const { check_admin } = require("../controllers/authController");
 
@@ -16,6 +17,7 @@ router.get("/search", searchBooks);
 
 router.get("/get_book/:id", getBook);
 router.get("/get_books", getBooks);
+router.get("/find_similar_books/:id", findSimilarBooks);
 
 // // GET BOOKS WITH SORTING
 // router.get("/", getBooksBySorting);

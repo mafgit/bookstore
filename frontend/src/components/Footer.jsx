@@ -16,7 +16,7 @@ const Footer = () => {
             mafgit
           </a>
         </div>
-
+        with a little help of
         <div className="right">
           <FaGithub />
           <a href="https://github.com/sarimbinasif" target="_blank">
