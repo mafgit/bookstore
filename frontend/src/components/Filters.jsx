@@ -22,19 +22,33 @@ const Filter = ({ addTag, removeTag, tag }) => {
 };
 
 const Filters = ({ addTag, removeTag }) => {
+  const tags = [
+    "mystery",
+    "crime",
+    "inspiration",
+    "adventure",
+    "philosophy",
+    "fiction",
+    "classic",
+    "psychology",
+    "productivity",
+    "history",
+    "science",
+    "literature",
+    "post-apocalyptic",
+    "fantasy",
+    "thriller",
+    "historical",
+  ];
+
   return (
     <div className="filters">
       <div className="filter-type">
         <h3>Categories</h3>
       </div>
-      <Filter tag="action" addTag={addTag} removeTag={removeTag} />
-      <Filter tag="adventure" addTag={addTag} removeTag={removeTag} />
-      <Filter tag="psychology" addTag={addTag} removeTag={removeTag} />
-      <Filter tag="horror" addTag={addTag} removeTag={removeTag} />
-      <Filter tag="sci-fi" addTag={addTag} removeTag={removeTag} />
-      <Filter tag="popular" addTag={addTag} removeTag={removeTag} />
-      <Filter tag="trending" addTag={addTag} removeTag={removeTag} />
-      <Filter tag="thriller" addTag={addTag} removeTag={removeTag} />
+      {tags.map((tag) => (
+        <Filter tag={tag} addTag={addTag} removeTag={removeTag} />
+      ))}
       {/*<br />
        <div className="filter-type">
         <h3>Sort by</h3>

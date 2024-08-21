@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import "../styles/SearchPage.css";
+import BooksRow from "../components/BooksRow";
 
 const SearchPage = () => {
   const [search, setSearch] = useState("");
@@ -56,7 +57,8 @@ const SearchPage = () => {
     <div className="search-page page">
       <SearchInput search={search} setSearch={setSearch} />
       <div className="books-and-filters">
-        <div className="books">
+        <BooksRow name={"Search Results"} books={books} />
+        {/* <div className="books">
           {books.map((book) => (
             <Book
               key={book._id}
@@ -66,7 +68,7 @@ const SearchPage = () => {
               title={book.title}
             />
           ))}
-        </div>
+        </div> */}
         <Filters addTag={addTag} removeTag={removeTag} />
       </div>
     </div>

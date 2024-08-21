@@ -6,6 +6,7 @@
   text-align: center;
   gap: 10px;
   cursor: pointer;
+  width: 150px;
 }
 
 .book .bottom {
@@ -18,6 +19,7 @@
   width: 150px;
   object-fit: cover;
   border-radius: 8px;
+  height: 230px !important;
 }
 
 .book .author {
