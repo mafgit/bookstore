@@ -16,8 +16,8 @@ const Footer = () => {
             mafgit
           </a>
         </div>
-        with a little help of
-        <div className="right">
+        <p style={{ scale: "0.8" }}>with a little help of</p>
+        <div className="right" style={{ scale: "0.8" }}>
           <FaGithub />
           <a href="https://github.com/sarimbinasif" target="_blank">
             sarimbinasif

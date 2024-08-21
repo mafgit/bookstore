@@ -20,6 +20,7 @@ const BooksRow = ({ name, books }) => {
             id={book._id}
             price={book.price}
             title={book.title}
+            author={book.author}
           />
         ))}
       </div>
