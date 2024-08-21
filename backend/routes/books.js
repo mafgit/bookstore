@@ -5,6 +5,7 @@ const {
   deleteBook,
   searchBooks,
   getBook,
+  getBooks,
 } = require("../controllers/booksController");
 const { check_admin } = require("../controllers/authController");
 
@@ -14,6 +15,7 @@ const router = express.Router();
 router.get("/search", searchBooks);
 
 router.get("/get_book/:id", getBook);
+router.get("/get_books", getBooks);
 
 // // GET BOOKS WITH SORTING
 // router.get("/", getBooksBySorting);

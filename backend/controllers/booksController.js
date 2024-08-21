@@ -1,4 +1,5 @@
 const Book = require("../models/Book");
+const mongoose = require("mongoose");
 
 // CREATE BOOK
 const createBook = async (req, res) => {
@@ -49,13 +50,38 @@ const getBook = async (req, res) => {
   }
 };
 
+// GET BOOKS BY ID
+const getBooks = async (req, res) => {
+  const ids = req.query.ids.split(",");
+  const ids2 = [];
+  let i = 0;
+  for (let j = 0; j < ids.length; j++) {
+    if (ids[j].length) {
+      ids2[i] = new mongoose.Types.ObjectId(ids[j]);
+      i++;
+    }
+  }
+
+  try {
+    const books = await Book.find({ _id: { $in: ids2 } });
+    console.log(books);
+    res.status(200).json({ books });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 // SEARCH BOOKS BY TEXT AND TAGS
 const searchBooks = async (req, res) => {
   try {
     let text = req.query.text;
     if (text == undefined) text = "";
 
-    const { tags, sortBy, sortOrder } = req.query;
+    let { tags, sortBy, sortOrder } = req.query;
+
+    for (let i = 0; i < tags.length; i++) {
+      tags[i] = tags[i].toLowerCase();
+    }
 
     const query = {};
     if (text) {
@@ -65,7 +91,7 @@ const searchBooks = async (req, res) => {
       ];
     }
     if (tags && tags.length > 0) {
-      query.tags = { $in: tags };
+      query.tags = { $in: tags.toLowerCase() };
     }
 
     const sortOptions = {};
@@ -92,4 +118,5 @@ module.exports = {
   deleteBook,
   searchBooks,
   getBook,
+  getBooks,
 };

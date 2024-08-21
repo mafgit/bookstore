@@ -104,14 +104,14 @@ function App() {
                 </AdminRoute>
               }
             />
-            <Route
+            {/* <Route
               path="/admin/orders"
               element={
                 <AdminRoute isLoading={isLoading} setIsLoading={setIsLoading}>
                   <AdminOrdersPage />
                 </AdminRoute>
               }
-            />
+            /> */}
             <Route
               path="/admin/books"
               element={

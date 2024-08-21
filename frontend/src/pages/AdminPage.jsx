@@ -13,9 +13,9 @@ const AdminPage = () => {
         <FaBook /> <h3>Books</h3>
       </Link>
 
-      <Link to="/admin/orders">
+      {/* <Link to="/admin/orders">
         <FaTicket /> <h3>Orders</h3>
-      </Link>
+      </Link> */}
     </div>
   );
 };
