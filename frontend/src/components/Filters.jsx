@@ -1,29 +1,21 @@
 import "../styles/Filters.css";
 
-const Filters = () => {
+const Filters = ({ addTag, removeTag }) => {
   return (
     <div className="filters">
       <div className="filter-type">
         <h3>Categories</h3>
         <div className="filter">
-          <input type="checkbox" />
+          <input
+            type="checkbox"
+            onChange={(e) => {
+              // console.log(e.target.checked);
+
+              if (e.target.checked) addTag("action");
+              else removeTag("action");
+            }}
+          />
           <label>Action</label>
-        </div>
-        <div className="filter">
-          <input type="checkbox" />
-          <label>Adventure</label>
-        </div>
-        <div className="filter">
-          <input type="checkbox" />
-          <label>Sci-fi</label>
-        </div>
-        <div className="filter">
-          <input type="checkbox" />
-          <label>Romance</label>
-        </div>
-        <div className="filter">
-          <input type="checkbox" />
-          <label>Thriller</label>
         </div>
       </div>
       <br />

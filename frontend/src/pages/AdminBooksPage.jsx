@@ -21,6 +21,7 @@ const Book = ({
         </div>
         <div className="right">
           <h3>{title}</h3>
+          <p>{author}</p>
           <div className="tags">
             {tags &&
               tags.map((tag, i) => (
@@ -67,7 +68,7 @@ const AdminBooksPage = () => {
           cover={book.cover}
           createdAt={book.createdAt}
           description={book.description}
-          amount={book.amount}
+          amount={book.price}
           author={book.author}
           tags={book.tags}
         />

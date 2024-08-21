@@ -64,7 +64,7 @@ const getBooks = async (req, res) => {
 
   try {
     const books = await Book.find({ _id: { $in: ids2 } });
-    console.log(books);
+    // console.log(books);
     res.status(200).json({ books });
   } catch (err) {
     console.log(err);
@@ -74,14 +74,15 @@ const getBooks = async (req, res) => {
 // SEARCH BOOKS BY TEXT AND TAGS
 const searchBooks = async (req, res) => {
   try {
+    console.log(req.query);
     let text = req.query.text;
     if (text == undefined) text = "";
 
     let { tags, sortBy, sortOrder } = req.query;
 
-    for (let i = 0; i < tags.length; i++) {
-      tags[i] = tags[i].toLowerCase();
-    }
+    // for (let i = 0; i < tags.length; i++) {
+    //   tags[i] = tags[i].toLowerCase();
+    // }
 
     const query = {};
     if (text) {
@@ -91,7 +92,7 @@ const searchBooks = async (req, res) => {
       ];
     }
     if (tags && tags.length > 0) {
-      query.tags = { $in: tags.toLowerCase() };
+      query.tags = { $in: tags };
     }
 
     const sortOptions = {};
@@ -100,7 +101,7 @@ const searchBooks = async (req, res) => {
     }
 
     const books = await Book.find(query).sort(sortOptions);
-    // console.log(books);
+    // console.log(query);
 
     res.status(200).json({ books: books });
   } catch (err) {

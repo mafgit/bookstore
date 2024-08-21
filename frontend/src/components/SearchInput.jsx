@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/SearchInput.css";
 
-const SearchInput = () => {
+const SearchInput = ({ setSearch }) => {
   const [text, setText] = useState("");
   const navigate = useNavigate();
   return (
@@ -25,6 +25,7 @@ const SearchInput = () => {
           )
             return;
 
+          setSearch(newText);
           navigate("/search?text=" + newText + "&tags=");
           // }
         }}
