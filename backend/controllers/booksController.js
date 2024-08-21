@@ -42,7 +42,7 @@ const deleteBook = async (req, res) => {
 const getBook = async (req, res) => {
   try {
     const searchedBook = await Book.findById(req.params.id);
-    // console.log(req.body);
+    console.log(searchedBook);
     res.status(200).json({ book: searchedBook });
   } catch (err) {
     console.log(err);

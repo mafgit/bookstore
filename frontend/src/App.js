@@ -27,6 +27,7 @@ function App() {
   const [email, setEmail] = useState("");
   const [id, setId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     axios
@@ -36,8 +37,6 @@ function App() {
       .then((res) => {
         setIsLoading(false);
         if (res.data.auth === true) {
-          console.log(res.data.user.name);
-
           setName(res.data.user.name);
           setEmail(res.data.user.email);
           setId(res.data.user.id);
@@ -49,7 +48,18 @@ function App() {
         console.log(err);
         setIsLoading(false);
       });
+
+    let lsCart1 = localStorage.getItem("cart");
+    if (!lsCart1) {
+      localStorage.setItem("cart", []);
+      setCart([]);
+    } else {
+      const lsCart = JSON.parse(lsCart1);
+      setCart(lsCart);
+    }
   }, []);
+
+  const saveCart = (cart) => localStorage.setItem("cart", JSON.stringify(cart));
 
   return (
     <div className="App">
@@ -71,9 +81,19 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/book/:bid" element={<BookPage />} />
+            <Route
+              path="/book/:bid"
+              element={
+                <BookPage cart={cart} setCart={setCart} saveCart={saveCart} />
+              }
+            />
             <Route path="/search" element={<SearchPage />} />
-            <Route path="/cart" element={<CartPage />} />
+            <Route
+              path="/cart"
+              element={
+                <CartPage cart={cart} setCart={setCart} saveCart={saveCart} />
+              }
+            />
 
             {/* admin routes */}
             <Route

@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa6";
 import BooksRow from "../components/BooksRow";
 
-const BookPage = () => {
+const BookPage = ({ cart, setCart, saveCart }) => {
   const [book, setBook] = useState({});
   const [similarBooks, setSimilarBooks] = useState([]);
   const { bid } = useParams();
@@ -66,7 +66,17 @@ const BookPage = () => {
             <FaWallet /> RS. {book.price}
           </p>
 
-          <button className="add-btn">
+          <button
+            className="add-btn"
+            onClick={() => {
+              for (let i = 0; i < cart.length; i++) {
+                if (cart[i] == book._id) return;
+              }
+
+              setCart([...cart, book._id]);
+              saveCart([...cart, book._id]);
+            }}
+          >
             <FaCartShopping /> Add to Cart
           </button>
         </div>
