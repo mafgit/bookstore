@@ -11,11 +11,13 @@
   display: flex;
   gap: 5px;
   align-items: center;
+  padding: 0 50px;
 }
 
 .books-row .books {
   flex-wrap: wrap;
-  max-width: 1200px;
+  width: 1200px;
+  max-width: 90%;
   display: flex;
   gap: 20px;
   margin: auto;

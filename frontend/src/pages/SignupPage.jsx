@@ -19,7 +19,7 @@ const SignupPage = () => {
           e.preventDefault();
           axios
             .post(
-              "http://127.0.0.1:5000/api/auth/signup",
+              "/api/auth/signup",
               {
                 name,
                 email,

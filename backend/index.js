@@ -11,15 +11,16 @@ const ordersRoute = require("./routes/orders.js");
 
 const app = express();
 
-app.set("trust proxy");
-app.enable("trust proxy");
+// app.set("trust proxy");
+// app.enable("trust proxy");
 
 app.use(
   cors({
     origin: ["http://127.0.0.1:3000", "http://localhost:3000"],
     credentials: true,
-    optionsSuccessStatus: 200,
-    exposedHeaders: ["Set-Cookie"],
+    methods: ["GET", "POST", "DELETE", "PUT"],
+    // optionsSuccessStatus: 200,
+    // exposedHeaders: ["Set-Cookie"],
   })
 );
 

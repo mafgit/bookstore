@@ -19,14 +19,14 @@ const BookPage = ({ cart, setCart, saveCart }) => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:5000/api/books/get_book/" + bid)
+      .get("/api/books/get_book/" + bid)
       .then((res) => {
         setBook(res.data.book);
       })
       .catch((err) => console.log(err));
 
     axios
-      .get("http://127.0.0.1:5000/api/books/find_similar_books/" + bid)
+      .get("/api/books/find_similar_books/" + bid)
       .then((res) => {
         setSimilarBooks(res.data.books);
       })

@@ -73,24 +73,8 @@
   width: 100%;
 }
 
-.admin-books-page {
+.admin-books-page .books {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 10px;
-  flex-direction: column;
-  max-width: 1000px;
-  margin: auto;
-}
-
-.admin-books-page .book {
-  width: 100%;
-  max-width: 1000px;
-  display: flex;
-  background-color: #1c1c1c;
-  color: #fff;
-  justify-content: center;
-  text-align: left;
-  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
 }

@@ -15,7 +15,7 @@ const User = ({ id, name, email, createdAt, isAdmin }) => {
           className="del-btn"
           onClick={() => {
             axios
-              .delete("http://127.0.0.1:5000/api/auth/delete_user/" + id, {
+              .delete("/api/auth/delete_user/" + id, {
                 withCredentials: true,
               })
               .then((res) => {
@@ -35,7 +35,7 @@ const AdminUsersPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:5000/api/auth/get_users", {
+      .get("/api/auth/get_users", {
         withCredentials: true,
       })
       .then((res) => {

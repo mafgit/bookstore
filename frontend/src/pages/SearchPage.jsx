@@ -14,7 +14,7 @@ const SearchPage = () => {
   const [tags, setTags] = useState([]);
   const [tagsStr, setTagsStr] = useState("");
   console.log(searchParams.get("tags").split(","));
-  // const base = "http://127.0.0.1:5000/api/books/search";
+  // const base = "/api/books/search";
   const navigate = useNavigate();
 
   const addTag = (tag) => {
@@ -41,7 +41,7 @@ const SearchPage = () => {
   useEffect(() => {
     axios
       .get(
-        `http://127.0.0.1:5000/api/books/search?text=${
+        `/api/books/search?text=${
           searchParams.get("text") || ""
         }&tags=${searchParams.get("tags")}`
       )

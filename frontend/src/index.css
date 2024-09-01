@@ -28,8 +28,97 @@ button {
 }
 
 .page {
-  max-width: 1200px;
+  width: 1200px;
+  max-width: 90%;
   margin: auto;
+}
+
+@media only screen and (max-width: 1070px) {
+  .books-row .books {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .books-row .row-name {
+    justify-content: center !important;
+    align-items: center !important;
+  }
+
+  .book-page .main {
+    flex-direction: column;
+    height: max-content !important;
+    justify-content: center !important;
+    align-items: center !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .book-page {
+    width: 100% !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .book-page .right,
+  .tags,
+  .book-page p {
+    justify-content: center !important;
+    align-items: center !important;
+    text-align: center;
+  }
+
+  .book-page img {
+    width: 150px;
+  }
+}
+
+@media only screen and (max-width: 860px) {
+  .home-page {
+    max-width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 770px) {
+  .navbar .left {
+    display: none;
+  }
+  .navbar {
+    justify-content: space-between !important;
+    padding: 20px !important;
+  }
+
+  .search-input input {
+    width: max-content !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .search-input {
+    width: 60% !important;
+    min-width: 60% !important;
+    max-width: 60% !important;
+  }
+
+  .admin-users-page {
+    flex-wrap: wrap !important;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 0.9rem;
+  }
+
+  .admin-page {
+    flex-direction: column !important;
+  }
+
+  .book-page .main {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }
 
 h3 {

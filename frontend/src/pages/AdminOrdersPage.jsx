@@ -32,7 +32,7 @@ const Order = ({ id, createdAt, amount, books, user }) => {
         <button
           onClick={() => {
             axios
-              .delete("http://127.0.0.1:5000/api/orders/delete_order/" + id, {
+              .delete("/orders/delete_order/" + id, {
                 withCredentials: true,
               })
               .then((res) => {
@@ -52,7 +52,7 @@ const AdminOrdersPage = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:5000/api/orders/get_orders", {
+      .get("/orders/get_orders", {
         withCredentials: true,
       })
       .then((res) => {

@@ -22,7 +22,7 @@ const ProfilePage = () => {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:5000/api/orders/get_orders/" + id, {
+      .get("/orders/get_orders/" + id, {
         withCredentials: true,
       })
       .then((res) => {
@@ -42,7 +42,7 @@ const ProfilePage = () => {
         <button
           onClick={() => {
             axios
-              .get("http://127.0.0.1:5000/api/auth/logout", {
+              .get("/api/auth/logout", {
                 withCredentials: true,
               })
               .then((res) => {

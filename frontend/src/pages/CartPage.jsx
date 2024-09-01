@@ -9,7 +9,7 @@ const CartPage = ({ cart, setCart, saveCart }) => {
   useEffect(() => {
     // cart.forEach((id) => {
     //   axios
-    //     .get("http://127.0.0.1:5000/api/books/get_book/" + id)
+    //     .get("/api/books/get_book/" + id)
     //     .then((res) => {
     //       setBooks(() => [...books, res.data.book]);
     //     })
@@ -22,7 +22,7 @@ const CartPage = ({ cart, setCart, saveCart }) => {
     cart.forEach((id) => {
       str += id + ",";
       axios
-        .get("http://127.0.0.1:5000/api/books/get_books?ids=" + str)
+        .get("/api/books/get_books?ids=" + str)
         .then((res) => {
           setBooks(res.data.books);
         })
